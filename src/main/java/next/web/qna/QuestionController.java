@@ -41,7 +41,7 @@ public class QuestionController {
 	@RequestMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("question", new Question());
-		model.addAttribute("url","/question");
+		model.addAttribute("url","/questions");
 		return "qna/form";
 	}
 	
