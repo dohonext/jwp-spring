@@ -37,6 +37,10 @@ public class QnaService {
 		questionDao.insert(question);
 	}
 	
+	public void modify(Question question) {
+		questionDao.update(question);
+	}
+	
 	public void delete(final long questionId) throws ExistedAnotherUserException {
 		question = findById(questionId);
 		

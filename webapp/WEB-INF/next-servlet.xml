@@ -29,6 +29,8 @@
 		p:defaultEncoding="UTF-8"
 	/>
 	
+	<bean id="dbInitializer" class="next.dao.DBInitializer" />
+	
 	<bean id="messageSourceAccessor"
         class="org.springframework.context.support.MessageSourceAccessor"
         c:messageSource-ref="messageSource"

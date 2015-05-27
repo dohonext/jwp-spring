@@ -41,6 +41,14 @@ public class QuestionController {
 	@RequestMapping("/form")
 	public String form(Model model) {
 		model.addAttribute("question", new Question());
+		model.addAttribute("url","/question");
+		return "qna/form";
+	}
+	
+	@RequestMapping("/{id}/form")
+	public String modify(Model model, @PathVariable("id") long id) {
+		model.addAttribute("question", qnaService.findById(id));
+		model.addAttribute("url", "/"+id+"/form");
 		return "qna/form";
 	}
 	
@@ -55,6 +63,21 @@ public class QuestionController {
 			return "qna/form";
 		}
 		qnaService.save(question);
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/{id}/form", method=RequestMethod.POST)
+	public String modify(@PathVariable("id") long id, @Valid Question question, BindingResult bindingResult) {
+		logger.debug("Question : {}", question);
+		if (bindingResult.hasFieldErrors()) {
+			List<FieldError> errors = bindingResult.getFieldErrors();
+			for (FieldError error : errors) {
+				logger.debug("field : {}, error code : {}", error.getField(), error.getCode());
+			}
+			return "qna/form";
+		}
+		question.setQuestionId(id);
+		qnaService.modify(question);
 		return "redirect:/";
 	}
 }

@@ -9,7 +9,7 @@
 	<%@ include file="/include/top.jspf"%>
 
 	<div id="main">
-		<form:form modelAttribute="question" action="/questions" method="post">
+		<form:form modelAttribute="question" action="${url}" method="post">
 			<table>
 				<tr>
 					<td width="150">글쓴이</td>
